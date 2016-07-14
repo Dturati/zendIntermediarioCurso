@@ -43,7 +43,7 @@ class Module
     public function init(ModuleManager $moduleManager)
     {
         $sharedEvents = $moduleManager->getEventManager()->getSharedManager();
-        $sharedEvents->attach("Zend\Mvc\Controller\AbstractActionController", 
+        $sharedEvents->attach('Zend\Mvc\Controller\AbstractActionController',
                 MvcEvent::EVENT_DISPATCH,
                 array($this,'validaAuth'),
                 100

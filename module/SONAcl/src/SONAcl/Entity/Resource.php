@@ -22,18 +22,16 @@ class Resource
      */
     protected $id;
     
-      /**
-     *@ORM\oneToOne(targetEntity="SONAcl\Entity\Resorce")
-     *@ORM\joinColumn(name="parent_id",referenceColumnName=id") 
+    /**
+     * @ORM\Column(type="text")
+     * @var string
      */
-
     protected $nome;
     
     /**
      * @ORM\Column(type="boolean",name="is_admin")
      * @var boolean
      */
-   
     protected $createdAt;
     
     /**
@@ -54,13 +52,9 @@ class Resource
         return $this->id;
     }
 
-
-
     function getNome() {
         return $this->nome;
     }
-
-
 
     function getCreatedAt() {
         return $this->createdAt;
@@ -86,7 +80,10 @@ class Resource
         $this->createdAt = new \DateTime('now');
         return $this;
     }
-
+    
+    /**
+     * @ORM\PrePersist
+     */
     function setUpdateAt() {
         $this->updateAt = new \DateTime('now');
         return $this;

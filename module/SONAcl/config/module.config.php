@@ -58,8 +58,7 @@ return [
     
     'controllers' => [
         'invokables' => [
-            //'SONAcl\Controller\Roles' => 'SONAcl\Controller\RolesController',
- 
+            'SONAcl\Controller\Roles' => 'SONAcl\Controller\RolesController',
         ]
     ],
     

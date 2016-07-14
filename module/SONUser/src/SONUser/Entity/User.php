@@ -32,7 +32,7 @@ class User
      * @ORM\Column(name="nome", type="string", length=255, nullable=true)
      */
     private $nome;
-
+        
     /**
      * @var string
      *
@@ -167,7 +167,6 @@ class User
     }
     
     /**
-     * 
      * @ORM\PrePersist
      */
     function setUpdateAt() {

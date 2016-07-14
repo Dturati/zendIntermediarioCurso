@@ -3,22 +3,26 @@ namespace SONUser\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController,
  Zend\View\Model\ViewModel;
-use SONUser\Form\User;
+use SONUser\Form\User as UserForm;
 
 class IndexController extends AbstractActionController {
   
     public function registerAction(){
-        $form = new User();
+
+        $form = new UserForm();
         $request = $this->getRequest();
+
         
         if($request->isPost()){
             $form->setData($request->getPost());
             if($form->isValid()){
                 $service = $this->getServiceLocator()->get('SONUser\Service\User');
+
                 if($service->insert($request->getPost()->toArray()))
                 {
                     $fm = $this->flashMessenger()->setNamespace('SONUser')->addMessage('Ususário cadastrado');
                 }
+
                 
                 return $this->redirect()->toRoute('sonuser-register');
             }

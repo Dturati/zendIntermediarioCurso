@@ -8,7 +8,7 @@ use Zend\Stdlib\Hydrator;
 /**
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
- * @ORM\Table(name="sonacl_Privilleges")
+ * @ORM\Table(name="sonacl_privileges")
  * @ORM\Entity(repositoryClass="SONAcl\Entity\PrivilegeRepository")
  */
 
@@ -23,22 +23,16 @@ class Privilege
     
     /**
      *@ORM\OneToOne(targetEntity="SONAcl\Entity\Role")
-     * @ORM\JoinColumn(name="role_id",referenceColumnName="id")
+     * @ORM\JoinColumn(name="role_id",referencedColumnName="id")
      */
     protected $role;
     
       /**
      *@ORM\OneToOne(targetEntity="SONAcl\Entity\Resource")
-     * @ORM\JoinColumn(name="resource_id",referenceColumnName="id")
+     * @ORM\joinColumn(name="resource_id",referencedColumnName="id")
      */
     protected $resource;
 
-
-    /**
-     *@ORM\oneToOne(targetEntity="SONAcl\Entity\Privilege")
-     *@ORM\joinColumn(name="parent_id",referenceColumnName=id") 
-     */
-    protected $parent;
     
     /**
      * @ORM\Column(type="text")
@@ -75,14 +69,29 @@ class Privilege
         return $this->id;
     }
 
-    function getParent() {
-        return $this->parent;
-    }
-
     function getNome() {
         return $this->nome;
     }
+    
+    function getRole() {
+        return $this->role;
+    }
 
+    function getResource() {
+        return $this->resource;
+    }
+
+    function setRole($role) {
+        $this->role = $role;
+        return $this;
+    }
+
+    function setResource($resource) {
+        $this->resource = $resource;
+        return $this;
+    }
+
+        
     function getIs_admin() {
         return $this->is_admin;
     }
@@ -100,10 +109,6 @@ class Privilege
         return $this;
     }
 
-    function setParent($parent) {
-        $this->parent = $parent;
-        return $this;
-    }
 
     function setNome($nome) {
         $this->nome = $nome;
@@ -120,11 +125,14 @@ class Privilege
         return $this;
     }
 
+    //Pegar a alteração antes de persistir os dados
+    /**
+     * @ORM\PrePersist
+     */
     function setUpdateAt() {
         $this->updateAt = new \DateTime('now');
         return $this;
-    }
-    
+    }        
 
     public function toArray()
     {

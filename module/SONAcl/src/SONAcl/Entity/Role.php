@@ -12,9 +12,10 @@ use Zend\Stdlib\Hydrator;
  * @ORM\Entity(repositoryClass="SONAcl\Entity\RoleRepository")
  */
 
+//Entidades sempre no singular
 class Role 
 {
-    
+   
     /**
      *@ORM\Id
      * @ORM\Column(type="integer")
@@ -23,8 +24,8 @@ class Role
     protected $id;
     
       /**
-     *@ORM\oneToOne(targetEntity="SONAcl\Entity\Role")
-     *@ORM\joinColumn(name="parent_id",referenceColumnName=id")
+     *@ORM\OneToOne(targetEntity="SONAcl\Entity\Role")
+     *@ORM\JoinColumn(name="parent_id",referencedColumnName="id")
      */
     protected $parent;
     
@@ -46,9 +47,9 @@ class Role
     protected $createdAt;
     
     /**
-     * @ORM\Column(type="datetime",name="update_at")
+     * @ORM\Column(type="datetime",name="updated_at")
      */
-    protected $updateAt;
+    protected $updatedAt;
     
     public function __construct($options = array())
     {
@@ -79,7 +80,7 @@ class Role
         return $this->createdAt;
     }
 
-    function getUpdateAt() {
+    function getUpdatedAt() {
         return $this->updateAt;
     }
 
@@ -108,27 +109,36 @@ class Role
         return $this;
     }
 
-    function setUpdateAt() {
+
+    //Pegar a alteração antes de persistir os dados
+    /**
+     * @ORM\PrePersist
+     */
+    function setUpdatedAt() {
         $this->updateAt = new \DateTime('now');
         return $this;
     }
     
 
+    public function __toString()
+    {
+       return $this->nome;
+    }
+
     public function toArray()
     {
      if(isset($this->parent)){
-         $parent = $this->getId();
-     }else{
-         $this->parent = false;
-     }
+                 $parent = $this->getId();
+             }else{
+                 $this->parent = false;
+             }
      
-     return array(
-        'id'        => $this->id,
-        'nome'      => $this->nome,
-        'isAdmin'   => $this->is_admin,
-        'parent'    => $this->parent   
-     );
-         
+             return array(
+                'id'        => $this->id,
+                'nome'      => $this->nome,
+                'isAdmin'   => $this->is_admin,
+                'parent'    => $this->parent
+             );
     }
 
 
