@@ -1,0 +1,28 @@
+<h1>Users </h1>
+<br>
+<a href="<?php echo $this->url("sonacl-admin/default",  array('controller' => 'resources',"action" => "new")); ?>">Novo</a>
+
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Nome</th>
+    </tr>
+    <tr>
+    <?php foreach ($this->data as $entity): ?>
+     <td><?php echo $entity->getId(); ?></td>
+     <td><?php echo $entity->getNome(); ?></td>
+      <td>
+         <a href="<?php echo $this->url('sonacl-admin/default', array('controller' => 'resources','action' => 'edit', 'id' => $entity->getId()));?>">Edit</a>
+     </td>
+      <td>
+         <a href="<?php echo $this->url('sonacl-admin/default',array('controller' => 'resources','action' => 'delete','id' => $entity->getId()));?>">Delete</a>
+     </td>
+     </tr>
+     
+    <?php endforeach; ?>
+</table>
+
+<?php echo $this->paginationControl($this->data, 'Sliding', 'partial/paginator');
+?>
+
+

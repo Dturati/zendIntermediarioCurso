@@ -16,6 +16,7 @@ abstract class AbstractService {
     public function __construct(EntityManager $em)
     {
         $this->em = $em;
+        return $this->em;
     }
     
     

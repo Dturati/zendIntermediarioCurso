@@ -29,8 +29,7 @@ class Resource
     protected $nome;
     
     /**
-     * @ORM\Column(type="boolean",name="is_admin")
-     * @var boolean
+     * @ORM\Column(type="datetime",name="created_at")
      */
     protected $createdAt;
     
@@ -92,7 +91,7 @@ class Resource
 
     public function toArray()
     {
-            (new Hydrator\ClassMethods)->extract($this);
+          return   (new Hydrator\ClassMethods)->extract($this);
     }
 
 

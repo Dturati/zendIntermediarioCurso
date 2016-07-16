@@ -40,11 +40,6 @@ class Privilege
      */
     protected $nome;
     
-    /**
-     * @ORM\Column(type="boolean",name="is_admin")
-     * @var boolean
-     */
-    protected $is_admin;
     
      /**
      * @ORM\Column(type="datetime",name="created_at")
@@ -91,11 +86,6 @@ class Privilege
         return $this;
     }
 
-        
-    function getIs_admin() {
-        return $this->is_admin;
-    }
-
     function getCreatedAt() {
         return $this->createdAt;
     }
@@ -115,10 +105,6 @@ class Privilege
         return $this;
     }
 
-    function setIs_admin($is_admin) {
-        $this->is_admin = $is_admin;
-        return $this;
-    }
 
     function setCreatedAt() {
         $this->createdAt = new \DateTime('now');
@@ -145,7 +131,6 @@ class Privilege
      return array(
         'id'        => $this->id,
         'nome'      => $this->nome,
-        'isAdmin'   => $this->is_admin,
         'parent'    => $this->parent   
      );
          

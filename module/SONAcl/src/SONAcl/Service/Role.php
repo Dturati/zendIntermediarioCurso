@@ -1,14 +1,16 @@
 <?php
-use SONBase\Service\AbstractService;
+namespace SONAcl\Service;    
+
+use SONUser\Service\AbstractService;
 use Doctrine\ORM\EntityManager;
 use Zend\Stdlib\Hydrator;
 
-class Role extends AbstractService 
-{
-    public function __construct(\Doctrine\ORM\EntityManager $em)
+class Role extends AbstractService {
+    
+    public function __construct(EntityManager $em)
     {
         parent::__construct($em);
-        $this->entity = "SONAcl\Entity\Role";
+        $this->entity = 'SONAcl\Entity\Role';
     }
     
     public function insert(array $data)

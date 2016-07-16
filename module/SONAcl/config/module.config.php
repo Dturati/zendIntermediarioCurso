@@ -59,6 +59,8 @@ return [
     'controllers' => [
         'invokables' => [
             'SONAcl\Controller\Roles' => 'SONAcl\Controller\RolesController',
+            'SONAcl\Controller\Resources' => 'SONAcl\Controller\ResourcesController',
+            'SONAcl\Controller\Privileges' => 'SONAcl\Controller\PrivilegesController',
         ]
     ],
     
