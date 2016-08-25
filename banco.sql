@@ -26,12 +26,12 @@ create table sonacl_roles(
 
 );
 drop table sonacl_roles;
-select * from sonacl_roles;
+select * from sonacl_roles;			
 insert into sonacl_roles(parent_id,nome,is_admin) values(1,'david',true);
 truncate table sonacl_roles;
 
 create table sonacl_privileges(
-	id int primary key,
+	id int primary key auto_increment unique,
 	role_id int,
     resource_id int,
     nome varchar(45),
@@ -47,11 +47,12 @@ select * from sonacl_privileges;
 truncate table sonacl_privileges;
 
 create table sonacl_resources(
-	id int primary key,
+	id int primary key unique auto_increment,
     nome varchar(45),
     created_at datetime,
     update_at datetime
 );
 drop table sonacl_resources;
+alter table sonacl_resources change id id int(11) not null unique auto_increment;
 explain sonacl_resources;
-select * from sonacl_resources;
+select * from sonacl_resources;	

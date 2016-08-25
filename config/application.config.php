@@ -15,6 +15,7 @@ return array(
         'SONBase',
         'SONUser',
         'SONAcl',
+        'SONUserRest',
         
     ),
 

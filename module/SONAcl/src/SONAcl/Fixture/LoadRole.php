@@ -22,9 +22,9 @@ class LoadRole extends AbstractFixture implements OrderedFixtureInterface
                      ->setParent($visitante);
              $manager->persist($role);
              
-              $role = new Role();
-             $registrado = $manager->getReference("SONAcl\Entity\Role",2);
-             $role->setNome("Redator")
+            $role = new Role();
+            $registrado = $manager->getReference("SONAcl\Entity\Role",2);
+            $role->setNome("Redator")
                      ->setParent($registrado);
              $manager->persist($role);
              

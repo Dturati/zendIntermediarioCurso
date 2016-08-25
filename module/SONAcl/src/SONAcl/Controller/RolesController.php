@@ -60,6 +60,14 @@ class RolesController extends CrudController
         return new ViewModel(array('form' => $form));
     }
 
-    
+    public function testeAction()
+    {
+         
+        $acl = $this->getServiceLocator()->get('SONAcl\Permissions\Acl');
+        echo $acl->isAllowed("Redator","Páginas","Visualizar") ? "Permitido" : "Negado";
+        die();
+     
+       
+    }
     
 }

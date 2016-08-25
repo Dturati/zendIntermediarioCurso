@@ -17,7 +17,7 @@ return [
                         ],
                     
                     #rota filho
-                        'may_terminate' => true,
+                    'may_terminate' => true,
                         'child_routes' => [
                           'default' => [
                               'type' => 'Segment',

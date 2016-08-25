@@ -8,7 +8,7 @@ use SONUser\Form\User as UserForm;
 class IndexController extends AbstractActionController {
   
     public function registerAction(){
-
+     
         $form = new UserForm();
         $request = $this->getRequest();
 
